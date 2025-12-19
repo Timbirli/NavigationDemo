@@ -50,6 +50,18 @@ fun MainScreen(modifier: Modifier = Modifier) {
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
         entryProvider = entryProvider {
+            entry<HomeScreen> {
+                Home(onNavigation)
+            }
+            entry<WelcomeScreen>(
+                metadata = mapOf("extraDataKey" to "extraDataValue")
+            ) { key ->
+                Welcome(onNavigation, key.name)
+            }
+            entry<ProfileScreen> {
+                Profile(onClearBackStack)
+            }
+
         }
     )
 
